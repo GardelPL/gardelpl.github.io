@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+---
+
+<Layout
+	title="About Gardel"
+	description="Axiomatic semantics by Tony Hoare, functional programming (Bird & Wadler, Bend), and a style inspired by Object-Oriented Software Construction (2nd ed.) / Eiffel."
+	pubDate={new Date('2026-11-11')}
+>
+	<p>
+		<strong>Gardel</strong> is grounded in Tony Hoare's axiomatic semantics and static verification
+		backed by Boogie and Z3. Its specification style—built around <code>require</code>,{' '}
+		<code>ensure</code>, <code>invariant</code>, <code>variant</code>, and <code>check</code>{' '}
+		proof blocks—was inspired by <em>Object-Oriented Software Construction</em> (2nd ed.) and
+		Eiffel's Design by Contract.
+	</p>
+	<p>
+		Its programming model draws on functional programming—pure functions, algebraic data types,
+		structural recursion, and equational reasoning from Richard Bird and Philip Wadler's{' '}
+		<em>Introduction to Functional Programming</em> (Prentice Hall)—as well as ideas from the{' '}
+		<strong>Bend</strong> programming language.
+	</p>
+	<p>
+		Every post on this site uses the canonical{' '}
+		<a href="https://github.com/GardelPL/gardel-syntax">gardel-syntax</a> TextMate grammar directly
+		inside Astro/Shiki so Gardel code snippets render with accurate syntax highlighting.
+	</p>
+	<p>
+		Explore the projects under <a href="https://github.com/GardelPL">github.com/GardelPL</a>.
+	</p>
+</Layout>

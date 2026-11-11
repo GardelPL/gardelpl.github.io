@@ -1,0 +1,155 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Gardel",
+  "scopeName": "source.gardel",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#characters" },
+    { "include": "#constants" },
+    { "include": "#contracts" },
+    { "include": "#declarations" },
+    { "include": "#keywords" },
+    { "include": "#operators" },
+    { "include": "#visibility" },
+    { "include": "#numbers" },
+    { "include": "#types" },
+    { "include": "#routine-call" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-dash.gardel",
+          "match": "--.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.gardel",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.gardel",
+              "match": "\\\\(n|r|t|\\\\|'|\"|0|u\\{[0-9a-fA-F]{1,6}\\})"
+            },
+            {
+              "name": "invalid.illegal.escape.gardel",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "characters": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.gardel",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.gardel",
+              "match": "\\\\(n|r|t|\\\\|'|\"|0|u\\{[0-9a-fA-F]{1,6}\\})"
+            },
+            {
+              "name": "invalid.illegal.escape.gardel",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "visibility": {
+      "patterns": [
+        {
+          "match": "\\{([A-Z][A-Z0-9_]*)\\b",
+          "captures": {
+            "1": { "name": "storage.modifier.visibility.gardel" }
+          }
+        }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "name": "keyword.declaration.gardel",
+          "match": "\\b(module|functions|program|reactive\\s+program|reactive|concept|group|representation|create|feature|law|satisfies|refines|let|fn)\\b"
+        }
+      ]
+    },
+    "contracts": {
+      "patterns": [
+        {
+          "name": "keyword.other.contract.gardel",
+          "match": "\\b(require|ensure|invariant|variant|trigger|check|assume|reveal|specify)\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.gardel",
+          "match": "\\b(if|then|else|case|match|where|with|do|end)\\b"
+        },
+        {
+          "name": "keyword.operator.logical.gardel",
+          "match": "\\b(and|or|not|implies|forall|exists)\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "variable.language.gardel",
+          "match": "\\b(Current|Result)\\b"
+        },
+        {
+          "name": "constant.language.boolean.gardel",
+          "match": "\\b(True|False)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.gardel",
+          "match": "(\\->|<\\-|\\+\\%|\\-\\%|\\*\\%|!=|<=|>=|<<|>>|:=|::|\\+|-|\\*|/|%|=|\\||&|\\^|<|>)"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.gardel",
+          "match": "\\b[0-9]+\\.[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.gardel",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "entity.name.type.gardel",
+          "match": "\\b[A-Z][A-Z0-9_]*\\b"
+        }
+      ]
+    },
+    "routine-call": {
+      "patterns": [
+        {
+          "match": "\\b([a-z][a-zA-Z0-9_]*)\\s*(?=\\()",
+          "captures": {
+            "1": { "name": "entity.name.function.gardel" }
+          }
+        }
+      ]
+    }
+  }
+}

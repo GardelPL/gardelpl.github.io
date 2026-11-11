@@ -1,0 +1,56 @@
+---
+interface Props {
+	size?: 'sm' | 'md' | 'lg';
+	variant?: 'light' | 'dark-tile';
+	class?: string;
+	decorative?: boolean;
+}
+
+const {
+	size = 'md',
+	variant = 'light',
+	class: className = '',
+	decorative = false,
+} = Astro.props;
+
+const strokePrimary = variant === 'dark-tile' ? '#7FD0CF' : '#0B5560';
+const strokeCheck = variant === 'dark-tile' ? '#38C58F' : '#0F9D6B';
+const crownWidth = size === 'sm' ? '16' : '12';
+const bandWidth = size === 'sm' ? '20' : '16';
+const dimensions =
+	size === 'sm'
+		? 'width: 48px; height: 21px;'
+		: size === 'md'
+			? 'width: 140px; height: 60px;'
+			: 'width: min(360px, 76vw); height: auto;';
+---
+
+<svg
+	role={decorative ? undefined : 'img'}
+	aria-hidden={decorative ? 'true' : undefined}
+	aria-label={decorative ? undefined : 'Gardel logo: a gardeliano trilby in deep teal with an emerald check'}
+	viewBox="0 30 400 170"
+	style={dimensions}
+	class={className}
+	fill="none"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+>
+	<path
+		d="M124 104 C 128 80, 142 62, 168 58 C 184 56, 194 66, 208 66 C 222 66, 232 56, 248 60 C 270 66, 280 84, 284 104"
+		stroke={strokePrimary}
+		stroke-width={crownWidth}
+	></path>
+	<path
+		d="M118 124 C 170 136, 216 136, 256 128"
+		stroke={strokePrimary}
+		stroke-width={bandWidth}
+	></path>
+	<path d="M268 124 L282 138 L306 112" stroke={strokeCheck} stroke-width={crownWidth}></path>
+	<path
+		d="M40 154 C 90 172, 160 174, 220 164 C 280 154, 330 150, 376 124"
+		stroke={strokePrimary}
+		stroke-width={crownWidth}
+	></path>
+</svg>
+

@@ -1,0 +1,183 @@
+/*
+  Gardeliano Teal design system tokens from gardelc/design/gradel-fedora
+ */
+
+:root {
+	--bg-paper: #F3F1EA;
+	--bg-sage: #E4EBE8;
+	--surface-card: #FAF9F5;
+	--teal: #0B5560;
+	--teal-deep: #083F47;
+	--teal-night: #08272C;
+	--emerald: #0F9D6B;
+	--emerald-bright: #38C58F;
+	--aqua: #7FD0CF;
+
+	--accent: var(--teal);
+	--accent-dark: var(--teal-deep);
+	--black: 8, 63, 71;
+	--gray: 63, 95, 100;
+	--gray-light: 228, 235, 232;
+	--gray-dark: 14, 46, 51;
+	--border-subtle: rgba(11, 85, 96, 0.14);
+	--box-shadow:
+		0 2px 8px rgba(8, 39, 44, 0.06),
+		0 12px 28px rgba(8, 39, 44, 0.08);
+	--font-display: 'Space Grotesk', var(--font-atkinson), system-ui, sans-serif;
+	--font-body: var(--font-atkinson), system-ui, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: var(--font-body);
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	background-color: var(--bg-paper);
+	color: rgb(var(--gray-dark));
+	font-size: 19px;
+	line-height: 1.7;
+}
+
+main {
+	width: 780px;
+	max-width: calc(100% - 2em);
+	margin: auto;
+	padding: 3em 1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-display);
+	margin: 0 0 0.5rem 0;
+	color: var(--teal-deep);
+	line-height: 1.2;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+h1 {
+	font-size: 2.6em;
+}
+h2 {
+	font-size: 1.9em;
+}
+h3 {
+	font-size: 1.45em;
+}
+h4 {
+	font-size: 1.2em;
+}
+h5 {
+	font-size: 1.05em;
+}
+
+strong,
+b {
+	font-weight: 700;
+	color: var(--teal-deep);
+}
+
+a {
+	color: var(--teal);
+	text-decoration-thickness: 1.5px;
+	text-underline-offset: 3px;
+}
+
+a:hover {
+	color: var(--emerald);
+}
+
+p {
+	margin-bottom: 1.1em;
+}
+
+.prose p {
+	margin-bottom: 1.5em;
+}
+
+textarea,
+input {
+	font-size: 16px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 12px;
+}
+
+code {
+	padding: 2px 6px;
+	background-color: var(--bg-sage);
+	color: var(--teal-deep);
+	border-radius: 4px;
+	font-size: 0.88em;
+}
+
+pre {
+	padding: 1.35em 1.5em;
+	border-radius: 12px;
+	border: 1px solid rgba(11, 85, 96, 0.22);
+	box-shadow: 0 6px 20px rgba(8, 39, 44, 0.08);
+	font-size: 0.84em;
+	line-height: 1.55;
+}
+
+pre > code {
+	all: unset;
+}
+
+blockquote {
+	border-left: 4px solid var(--emerald);
+	background: var(--bg-sage);
+	padding: 0.75em 1.25em;
+	margin: 1.5em 0;
+	border-radius: 0 8px 8px 0;
+	color: var(--teal-deep);
+}
+
+blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid var(--border-subtle);
+	margin: 1.75em 0;
+}
+
+@media (max-width: 720px) {
+	body {
+		font-size: 17px;
+	}
+	main {
+		padding: 1.5em 1em;
+	}
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}

@@ -1,0 +1,3 @@
+[submodule "vendor/gardel-syntax"]
+	path = vendor/gardel-syntax
+	url = https://github.com/GardelPL/gardel-syntax.git

@@ -1,0 +1,12 @@
+# VSIX package outputs
+*.vsix
+
+# Dependencies and caches
+node_modules/
+.vscode-test/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+

@@ -1,0 +1,235 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import GardelLogo from '../components/GardelLogo.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				padding: 2.5rem 0 2.75rem;
+			}
+			.hero-wordmark {
+				margin: 1.5rem 0 0.75rem;
+				font-family: var(--font-display);
+				font-size: clamp(2.5rem, 6vw, 4rem);
+				font-weight: 500;
+				letter-spacing: 0.14em;
+				color: var(--teal-deep);
+				line-height: 1;
+			}
+			.hero-subtitle {
+				max-width: 36rem;
+				margin: 0 auto 1.75rem;
+				font-size: 1.15rem;
+				color: rgb(var(--gray-dark));
+			}
+			.hero-actions {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.85rem;
+			}
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				padding: 0.65rem 1.35rem;
+				border-radius: 10px;
+				font-family: var(--font-display);
+				font-weight: 500;
+				font-size: 0.98rem;
+				text-decoration: none;
+				transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+			}
+			.btn:hover {
+				transform: translateY(-1px);
+			}
+			.btn-primary {
+				background: var(--teal);
+				color: var(--bg-paper);
+			}
+			.btn-primary:hover {
+				background: var(--teal-deep);
+				color: var(--bg-paper);
+			}
+			.btn-secondary {
+				background: var(--bg-sage);
+				color: var(--teal-deep);
+				border: 1px solid var(--border-subtle);
+			}
+			.btn-secondary:hover {
+				border-color: var(--emerald);
+				color: var(--teal-deep);
+			}
+			.pillars {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 1rem;
+				margin: 1rem 0 3rem;
+			}
+			.pillar {
+				background: var(--bg-sage);
+				border: 1px solid var(--border-subtle);
+				border-radius: 14px;
+				padding: 1.25rem 1.35rem;
+			}
+			.pillar-tag {
+				display: inline-block;
+				margin-bottom: 0.5rem;
+				font-family: var(--font-display);
+				font-size: 0.78rem;
+				font-weight: 600;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: var(--emerald);
+			}
+			.pillar h3 {
+				font-size: 1.15rem;
+				margin-bottom: 0.35rem;
+			}
+			.pillar p {
+				margin: 0;
+				font-size: 0.94rem;
+				line-height: 1.55;
+			}
+			.posts-section h2 {
+				margin-bottom: 1rem;
+			}
+			.post-list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: grid;
+				gap: 1rem;
+			}
+			.post-card {
+				background: var(--surface-card);
+				border: 1px solid var(--border-subtle);
+				border-radius: 14px;
+				padding: 1.25rem 1.4rem;
+				transition: border-color 0.15s ease, box-shadow 0.15s ease;
+			}
+			.post-card:hover {
+				border-color: var(--emerald);
+				box-shadow: var(--box-shadow);
+			}
+			.post-card a {
+				text-decoration: none;
+				display: block;
+			}
+			.post-date {
+				font-size: 0.85rem;
+				color: rgb(var(--gray));
+			}
+			.post-title {
+				margin: 0.2rem 0 0.45rem;
+				font-size: 1.3rem;
+				color: var(--teal-deep);
+			}
+			.post-desc {
+				margin: 0;
+				font-size: 0.96rem;
+				color: rgb(var(--gray-dark));
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<GardelLogo size="lg" />
+				<h1 class="hero-wordmark">gardel</h1>
+				<p class="hero-subtitle">
+					Rooted in Tony Hoare's axiomatic semantics, functional programming (Bird &amp; Wadler;
+					Bend), and <em>Object-Oriented Software Construction</em> (2nd ed.)—with a contract style
+					inspired by Eiffel.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="/guide">Language Guide</a>
+					<a class="btn btn-secondary" href="/blog">Read the Blog</a>
+					<a
+						class="btn btn-secondary"
+						href="https://github.com/GardelPL"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						GitHub &rarr;
+					</a>
+				</div>
+			</section>
+
+			<section class="pillars" aria-label="Gardel pillars">
+				<article class="pillar">
+					<span class="pillar-tag">Axiomatic Semantics</span>
+					<h3>Hoare Logic &amp; Eiffel Style</h3>
+					<p>
+						<code>require</code>, <code>ensure</code>, <code>invariant</code>, and{' '}
+						<code>variant</code> clauses rooted in Tony Hoare's axiomatic semantics, in a style
+						inspired by <em>Object-Oriented Software Construction</em> (2nd ed.) and Eiffel's
+						Design by Contract.
+					</p>
+				</article>
+				<article class="pillar">
+					<span class="pillar-tag">Functional Programming</span>
+					<h3>Bird, Wadler &amp; Bend</h3>
+					<p>
+						Draws on pure functions and algebraic reasoning from Bird &amp; Wadler's{' '}
+						<em>Introduction to Functional Programming</em> alongside ideas from the{' '}
+						<strong>Bend</strong> programming language.
+					</p>
+				</article>
+				<article class="pillar">
+					<span class="pillar-tag">Verification</span>
+					<h3>Zero Trust Escapes</h3>
+					<p>
+						<code>gardelc --strict</code> proves termination, safety, and functional specs with
+						zero <code>assume</code> blocks.
+					</p>
+				</article>
+				<article class="pillar">
+					<span class="pillar-tag">Firulete</span>
+					<h3>Verified Algorithms</h3>
+					<p>
+						Classic data structures and algorithms proved end-to-end in pure, idiomatic Gardel.
+					</p>
+				</article>
+			</section>
+
+			<section class="posts-section">
+				<h2>Latest Posts</h2>
+				<ul class="post-list">
+					{
+						posts.map((post) => (
+							<li class="post-card">
+								<a href={`/blog/${post.id}/`}>
+									<div class="post-date">
+										<FormattedDate date={post.data.pubDate} />
+									</div>
+									<h3 class="post-title">{post.data.title}</h3>
+									<p class="post-desc">{post.data.description}</p>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

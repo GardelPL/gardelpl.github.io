@@ -1,0 +1,107 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+interface Props {
+	frontmatter?: {
+		title: string;
+		description: string;
+		status?: string;
+	};
+	title?: string;
+	description?: string;
+	status?: string;
+}
+
+const data = Astro.props.frontmatter ?? Astro.props;
+const title = data.title ?? 'Gardel';
+const description = data.description ?? '';
+const status = data.status;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			main {
+				width: 780px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 2.5em 1em;
+			}
+			.page-header {
+				margin-bottom: 1.75rem;
+				padding-bottom: 1.25rem;
+				border-bottom: 1px solid var(--border-subtle);
+			}
+			.status-pill {
+				display: inline-block;
+				margin-bottom: 0.65rem;
+				padding: 0.2rem 0.65rem;
+				border-radius: 999px;
+				background: var(--bg-sage);
+				border: 1px solid var(--border-subtle);
+				color: var(--emerald);
+				font-family: var(--font-display);
+				font-size: 0.78rem;
+				font-weight: 600;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+			}
+			.page-header h1 {
+				margin: 0 0 0.45rem;
+			}
+			.page-desc {
+				margin: 0;
+				color: rgb(var(--gray));
+				font-size: 1.05rem;
+			}
+			.prose :global(h2) {
+				margin-top: 2.25rem;
+				padding-top: 0.5rem;
+				border-top: 1px solid var(--border-subtle);
+			}
+			.prose :global(h3) {
+				margin-top: 1.5rem;
+			}
+			.prose :global(table) {
+				margin: 1.25rem 0 1.75rem;
+				font-size: 0.92rem;
+				border: 1px solid var(--border-subtle);
+				border-radius: 10px;
+				overflow: hidden;
+			}
+			.prose :global(th),
+			.prose :global(td) {
+				padding: 0.6rem 0.85rem;
+				border-bottom: 1px solid var(--border-subtle);
+				text-align: left;
+			}
+			.prose :global(th) {
+				background: var(--bg-sage);
+				color: var(--teal-deep);
+				font-family: var(--font-display);
+				font-weight: 600;
+			}
+			.prose :global(tr:last-child td) {
+				border-bottom: none;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article class="prose">
+				<header class="page-header">
+					{status && <span class="status-pill">{status}</span>}
+					<h1>{title}</h1>
+					{description && <p class="page-desc">{description}</p>}
+				</header>
+				<slot />
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+

@@ -1,0 +1,40 @@
+{
+  "name": "gardel-syntax",
+  "displayName": "Gardel",
+  "description": "Syntax highlighting and language support for the Gardel programming language",
+  "version": "0.1.0",
+  "license": "MIT",
+  "publisher": "gardel-lang",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GardelPL/gardel-syntax.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "gardel",
+        "aliases": [
+          "Gardel",
+          "gardel"
+        ],
+        "extensions": [
+          ".gdl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "gardel",
+        "scopeName": "source.gardel",
+        "path": "./syntaxes/gardel.tmLanguage.json"
+      }
+    ]
+  }
+}
